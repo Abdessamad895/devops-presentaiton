@@ -2,8 +2,7 @@ pipeline {
     agent any 
     
     tools{
-        jdk 'JDK21'
-        maven 'Maven3'
+        maven 'Maven'
     }
     
     stages{
@@ -23,22 +22,17 @@ pipeline {
         stage("Sonarqube Analysis "){
             steps{
                 sh """
-                    mvn sonar:sonar -Dsonar.url=http://localhost:9000/ -Dsonar.login=squ_72258a66a1bdd1e1e12c47858ca2d253ceb758ad -Dsonar.projectName=Devops \
+                    mvn sonar:sonar -Dsonar.url=http://localhost:9000/ -Dsonar.login=your_token -Dsonar.projectName=Devops \
                     -Dsonar.java.binaries=. \
                     -Dsonar.projectKey=Devops
                 """
             }
         }
-        // stage("Docker build "){
-        //     steps{
-        //         bat "docker build -t devopspresentation/myapp:latest ."
-        //     }
-        // }
         
         stage("Docker login"){
             steps {
-                withCredentials([string(credentialsId: 'dockerpresentation', variable: 'dockerhubpwd')]) {
-                    sh "docker login -u dockerpresentation -p ${dockerhubpwd}"
+                withCredentials([string(credentialsId: 'your_credentialID', variable: 'password')]) {
+                    sh "docker login -u your_credentialID -p ${dockerhubpwd}"
                 }
             }
         }
@@ -46,8 +40,8 @@ pipeline {
         stage("Docker push"){
             steps {
                  sh """ 
-                        docker tag devopspresentation/myapp:latest dockerpresentation/myapp 
-                        docker push dockerpresentation/myapp
+                        docker tag devopspresentation/devops-app:latest dockerpresentation/devops-app 
+                        docker push dockerpresentation/devops-app
                     """ 
             }
         }
@@ -55,9 +49,9 @@ pipeline {
         stage("Docker run"){
             steps {
                  sh """
-                        docker stop myapp 
-                        docker rm myapp 
-                        docker run --name myapp -d -p 8000:8080 dockerpresentation/myapp  
+                        docker stop devops-app
+                        docker rm devops-app
+                        docker run --name devops-app -d -p 9090:8080 dockerpresentation/devops-app 
                     """ 
             }
         }

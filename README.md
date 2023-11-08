@@ -126,3 +126,50 @@ Before you begin, make sure to have the following tools and utilities installed 
     ```bash
     ./get_app_url.sh
     ```
+
+##  **CI/CD Pipeline**
+# Jenkins Installation using Docker
+
+To install Jenkins using Docker, execute the following commands on your terminal:
+
+1. Pull the Jenkins image from Docker Hub:
+
+   ```bash
+   docker pull jenkins/jenkins
+   ```
+This command fetches the latest Jenkins image from Docker Hub, which is the repository for Docker images.
+
+Run the Jenkins container in the background with port mapping, a custom container name, and volume mounting:
+    ```bash
+    docker run -d -p 9090:8080 --name Jenkins --restart=on-failure -v jenkins_home:/var/jenins_home jenkins/jenkins
+    ```
+
+-d starts the container in the background (detached mode).
+-p 9090:8080 maps port 8080 inside the container to port 9090 on the host.
+--name Jenkins assigns the name 'Jenkins' to the container.
+--restart=on-failure ensures that the container automatically restarts if it fails.
+-v jenkins_home:/var/jenins_home mounts the volume 'jenkins_home' to the '/var/jenins_home' directory in the container.
+
+If you want to access your Docker container through a terminal/command prompt using this command :
+    ```bash
+    docker exec --name Jenkins 
+   ```
+That will access the Jenkins Docker container named "jenkins-tutorial".
+
+You can access your docker container (through a separate terminal/command prompt window) with a docker exec command such as:
+    
+    ```bash
+    docker exec -it Jenkins bash
+    ```
+
+You may want to access the Jenkins console log, for instance, when Unlocking Jenkins as part of the Post-installation setup wizard.
+Access the Jenkins console log through the terminal/command prompt window from which you executed the docker run …​ command. Alternatively, you can also access the Jenkins console log through the Docker logs of your container using the following command:
+    ```bash
+    docker logs <docker-container-name>
+    ```
+
+Your <docker-container-name> can be obtained using this command :
+    ```bash
+    docker ps
+    ```
+
