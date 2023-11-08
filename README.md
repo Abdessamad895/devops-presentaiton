@@ -143,21 +143,21 @@ This command fetches the latest Jenkins image from Docker Hub, which is the repo
     ```bash
     docker run -d -p 9090:8080 --name Jenkins --restart=on-failure -v jenkins_home:/var/jenins_home jenkins/jenkins
     ```
-    <span style="color:red"><-d> </span>starts the container in the background (detached mode).
+    <span style="color:red">-d</span>starts the container in the background (detached mode).
 
-    <span style="color:red"><-p 9090:8080> </span>maps port 8080 inside the container to port 9090 on the host.
+    <span style="color:red">-p 9090:8080</span>maps port 8080 inside the container to port 9090 on the host.
     
-    <span style="color:red"><--name Jenkins> </span>assigns the name <'Jenkins'> to the container.
+    <span style="color:red">--name Jenkins </span>assigns the name <'Jenkins'> to the container.
 
-    <span style="color:red"><--restart=on-failure> </span>ensures that the container automatically restarts if it fails.
+    <span style="color:red">--restart=on-failure</span>ensures that the container automatically restarts if it fails.
 
-    <span style="color:red"><-v jenkins_home:/var/jenins_home></span> mounts the volume 'jenkins_home' to the '/var/jenins_home' directory in the container.
+    <span style="color:red">-v jenkins_home:/var/jenins_home</span> mounts the volume 'jenkins_home' to the '/var/jenins_home' directory in the container.
 
 3. If you want to access your Docker container through a terminal/command prompt using this command :
     ```bash
     docker exec --name Jenkins 
     ```
-That will access the Jenkins Docker container named "jenkins-tutorial".
+That will access the Jenkins Docker container named "Jenkins".
 
 4. You can access your docker container (through a separate terminal/command prompt window) with a docker exec command such as:
     
