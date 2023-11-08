@@ -158,7 +158,7 @@ This command fetches the latest Jenkins image from Docker Hub, which is the repo
     ```bash
     docker exec --name Jenkins 
     ```
-    
+
 That will access the Jenkins Docker container named "Jenkins".
 
 4. You can access your docker container (through a separate terminal/command prompt window) with a docker exec command such as:
@@ -167,15 +167,12 @@ That will access the Jenkins Docker container named "Jenkins".
     docker exec -it Jenkins bash
     ```
 
-5. You may want to access the Jenkins console log, for instance, when Unlocking Jenkins as part of the Post-installation setup wizard. 
-Access the Jenkins console log through the terminal/command prompt window from which you executed the <docker run>​ command.
-
-Alternatively, you can also access the Jenkins console log through the Docker logs of your container using the following command:
+5. You may want to access the Jenkins console log, for instance, when Unlocking Jenkins as part of the Post-installation setup wizard. Access the Jenkins console log through the terminal/command prompt window from which you executed the <docker run>​ command.Alternatively, you can also access the Jenkins console log through the Docker logs of your container using the following command:
 
     ```bash
     docker logs docker-container-name
     ```
-Your docker-container-name can be obtained using this command :
+6. Your docker-container-name can be obtained using this command :
 
     ```bash
     docker ps
