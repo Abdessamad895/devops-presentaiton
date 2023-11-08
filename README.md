@@ -154,9 +154,11 @@ This command fetches the latest Jenkins image from Docker Hub, which is the repo
     <span style="color:red">-v jenkins_home:/var/jenins_home</span> mounts the volume 'jenkins_home' to the '/var/jenins_home' directory in the container.
 
 3. If you want to access your Docker container through a terminal/command prompt using this command :
+
     ```bash
     docker exec --name Jenkins 
     ```
+    
 That will access the Jenkins Docker container named "Jenkins".
 
 4. You can access your docker container (through a separate terminal/command prompt window) with a docker exec command such as:
@@ -165,13 +167,18 @@ That will access the Jenkins Docker container named "Jenkins".
     docker exec -it Jenkins bash
     ```
 
-5. You may want to access the Jenkins console log, for instance, when Unlocking Jenkins as part of the Post-installation setup wizard. Access the Jenkins console log through the terminal/command prompt window from which you executed the docker run …​ command. Alternatively, you can also access the Jenkins console log through the Docker logs of your container using the following command:
+5. You may want to access the Jenkins console log, for instance, when Unlocking Jenkins as part of the Post-installation setup wizard. 
+Access the Jenkins console log through the terminal/command prompt window from which you executed the <docker run>​ command.
+
+Alternatively, you can also access the Jenkins console log through the Docker logs of your container using the following command:
+
     ```bash
-    docker logs <docker-container-name>
+    docker logs docker-container-name
     ```
-Your <docker-container-name> can be obtained using this command :
+Your docker-container-name can be obtained using this command :
+
     ```bash
-    docker exec -it Jenkins bash
+    docker ps
     ```
 
 ## SonarQube Installation using Docker
@@ -179,16 +186,19 @@ Your <docker-container-name> can be obtained using this command :
 To install SonarQube, follow these steps:
 
 1. Pull the SonarQube image from Docker Hub by running the following command:
+
    ```bash
    docker pull sonarqube
    ```
 2. Once the image is pulled, run a SonarQube container with the following command:
+
    ```bash
    docker run -d --name sonarqube -p 9000:9000 sonarqube
    ```
 This command will start a SonarQube container in detached mode (-d) with the name "sonarqube" and port mapping from the host to the container.
 
 3. Check whether the SonarQube container is running by executing:
+
    ```bash
    docker ps
    ```
@@ -197,5 +207,7 @@ This command will display a list of all running Docker containers.
 4. Access SonarQube from your web browser using the URL: http://localhost:9000. SonarQube should now be up and running.
 
 5. If necessary, log in to SonarQube with the default credentials:
+
     Username: admin
+
     Password: admin
